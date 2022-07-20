@@ -5,10 +5,16 @@ import 'package:trips_app/User/bloc/bloc_user.dart';
 import 'package:trips_app/platzi_trips.dart';
 import 'package:trips_app/platzi_trips_cupertino.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
       statusBarBrightness: Brightness.light));
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
