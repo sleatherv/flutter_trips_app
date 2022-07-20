@@ -70,10 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '200788123597',
     projectId: 'tripsflutterapp-fd3d4',
     storageBucket: 'tripsflutterapp-fd3d4.appspot.com',
-    androidClientId:
-        '200788123597-318upgn5g9c6uk32br4uc6ovpbjv2jic.apps.googleusercontent.com',
-    iosClientId:
-        '200788123597-vk9nq89cnqhvh9gj10pa7h4varl83ae0.apps.googleusercontent.com',
+    androidClientId: '200788123597-318upgn5g9c6uk32br4uc6ovpbjv2jic.apps.googleusercontent.com',
+    iosClientId: '200788123597-vk9nq89cnqhvh9gj10pa7h4varl83ae0.apps.googleusercontent.com',
     iosBundleId: 'com.example.tripsApp',
   );
 }

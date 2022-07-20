@@ -35,6 +35,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   generic_bloc_provider: ^2.1.1
   firebase_core: ^1.19.2
+  firebase_auth: ^3.4.2
+  google_sign_in: ^5.4.0
+  firebase_storage: ^10.3.2
+  cloud_firestore: ^3.3.0
 
 dev_dependencies:
   flutter_test:
