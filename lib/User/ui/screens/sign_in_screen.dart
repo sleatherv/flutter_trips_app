@@ -52,8 +52,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       fontWeight: FontWeight.bold)),
               const SizedBox(height: 20),
               SignInButton(Buttons.Google, onPressed: () {
-                userBloc.signIn().then((userCredential) =>
-                    print('User is ${userCredential.additionalUserInfo}'));
+                userBloc.signOut();
+                userBloc.signIn();
               })
             ],
           )

@@ -8,8 +8,8 @@ class UserBloc implements Bloc {
   //Data Flow
   //Stream Firebase
   //StreamController
-  Stream<User?> stremFirebase = FirebaseAuth.instance.authStateChanges();
-  Stream<User?> get authStatus => stremFirebase;
+  Stream<User?> streamFirebase = FirebaseAuth.instance.authStateChanges();
+  Stream<User?> get authStatus => streamFirebase;
 
   //Use cases
   //Sign in will be general
