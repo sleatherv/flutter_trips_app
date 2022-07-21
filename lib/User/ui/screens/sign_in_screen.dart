@@ -38,20 +38,26 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   Widget signInGoogleUI() {
+    final double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
         alignment: Alignment.center,
         children: [
-          GradientBack('', MediaQuery.of(context).size.height),
+          GradientBack(title: '', height: MediaQuery.of(context).size.height),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Welcome \n This is your Travel App",
-                  style: TextStyle(
-                      fontSize: 35,
-                      fontFamily: "Lato",
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold)),
+              Flexible(
+                child: SizedBox(
+                  width: screenWidth,
+                  child: const Text("Welcome \n This is your Travel App",
+                      style: TextStyle(
+                          fontSize: 35,
+                          fontFamily: "Lato",
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold)),
+                ),
+              ),
               const SizedBox(height: 20),
               SignInButton(Buttons.Google, onPressed: () {
                 // userBloc.signOut();
