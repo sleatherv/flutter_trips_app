@@ -5,7 +5,7 @@ import '../../../widgets/floating_action_button_green.dart';
 class ProfilePlaceInfo extends StatelessWidget {
   Place place;
 
-  ProfilePlaceInfo(this.place);
+  ProfilePlaceInfo(this.place, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,26 +13,26 @@ class ProfilePlaceInfo extends StatelessWidget {
 
     final place = Text(
       this.place.name,
-      style: TextStyle(
+      style: const TextStyle(
           fontFamily: 'Lato', fontSize: 20.0, fontWeight: FontWeight.bold),
     );
 
     final placeInfo = Padding(
-        padding: EdgeInsets.symmetric(vertical: 10.0),
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                this.place.where,
-                style: TextStyle(
+                this.place.description,
+                style: const TextStyle(
                     color: Color.fromRGBO(0, 0, 0, 0.4),
                     fontFamily: 'Lato',
                     fontSize: 12.0,
                     fontWeight: FontWeight.bold),
               ),
               Text(
-                this.place.type,
-                style: TextStyle(
+                this.place.imageURL,
+                style: const TextStyle(
                     color: Color.fromRGBO(0, 0, 0, 0.4),
                     fontFamily: 'Lato',
                     fontSize: 12.0,
@@ -41,8 +41,8 @@ class ProfilePlaceInfo extends StatelessWidget {
             ]));
 
     final steps = Text(
-      'Steps ${this.place.steps}',
-      style: TextStyle(
+      'Likes ${this.place.likes}',
+      style: const TextStyle(
           fontFamily: 'Lato',
           fontSize: 14.0,
           fontWeight: FontWeight.bold,
@@ -51,7 +51,7 @@ class ProfilePlaceInfo extends StatelessWidget {
 
     final card = Container(
       width: screenWidth * 0.65,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
           color: Colors.white,
           boxShadow: <BoxShadow>[
@@ -61,7 +61,7 @@ class ProfilePlaceInfo extends StatelessWidget {
                 offset: Offset(0.0, 5.0))
           ]),
       child: Padding(
-          padding: EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[place, placeInfo, steps],
@@ -69,8 +69,8 @@ class ProfilePlaceInfo extends StatelessWidget {
     );
 
     return Stack(
-      alignment: Alignment(0.8, 1.25),
-      children: <Widget>[card, FloatingActionButtonGreen()],
+      alignment: const Alignment(0.8, 1.25),
+      children: <Widget>[card, const FloatingActionButtonGreen()],
     );
   }
 }

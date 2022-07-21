@@ -49,10 +49,11 @@ class ProfileHeader extends StatelessWidget {
             fontSize: 30.0),
       );
 
-      User user = User(
+      AppUser user = AppUser(
           name: snapshot.data.displayName,
           email: snapshot.data.email,
-          photoURL: snapshot.data.photoURL);
+          photoURL: snapshot.data.photoURL,
+          uid: '');
 
       return Container(
         margin: const EdgeInsets.only(left: 20.0, right: 20.0, top: 50.0),

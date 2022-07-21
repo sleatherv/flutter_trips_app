@@ -3,10 +3,9 @@ import 'package:trips_app/Place/model/place.dart';
 import 'package:trips_app/User/ui/widgets/profile_place_info.dart';
 
 class ProfilePlace extends StatelessWidget {
-  final String image;
   final Place place;
 
-  const ProfilePlace(this.image, this.place, {Key? key}) : super(key: key);
+  const ProfilePlace(this.place, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +13,8 @@ class ProfilePlace extends StatelessWidget {
       margin: const EdgeInsets.only(top: 10.0, bottom: 70.0),
       height: 220.0,
       decoration: BoxDecoration(
-          image: DecorationImage(fit: BoxFit.cover, image: AssetImage(image)),
+          image: DecorationImage(
+              fit: BoxFit.cover, image: NetworkImage(place.imageURL)),
           borderRadius: const BorderRadius.all(Radius.circular(20.0)),
           color: Colors.red,
           boxShadow: const <BoxShadow>[

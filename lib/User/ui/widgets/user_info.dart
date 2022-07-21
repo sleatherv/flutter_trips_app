@@ -4,7 +4,7 @@ import 'package:trips_app/User/model/user.dart';
 class UserInfo extends StatelessWidget {
   const UserInfo({Key? key, required this.user}) : super(key: key);
 
-  final User user;
+  final AppUser user;
 
   @override
   Widget build(BuildContext context) {

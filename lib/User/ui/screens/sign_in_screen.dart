@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:trips_app/User/bloc/bloc_user.dart';
+import 'package:trips_app/User/model/user.dart';
 import 'package:trips_app/widgets/gradient_back.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
@@ -52,8 +54,14 @@ class _SignInScreenState extends State<SignInScreen> {
                       fontWeight: FontWeight.bold)),
               const SizedBox(height: 20),
               SignInButton(Buttons.Google, onPressed: () {
-                userBloc.signOut();
-                userBloc.signIn();
+                // userBloc.signOut();
+                userBloc.signIn().then((user) {
+                  userBloc.updateUserData(AppUser(
+                      uid: user.additionalUserInfo?.profile!['id'],
+                      name: user.additionalUserInfo?.profile!['name'],
+                      email: user.additionalUserInfo?.profile!['email'],
+                      photoURL: user.additionalUserInfo?.profile!['picture']));
+                });
               })
             ],
           )

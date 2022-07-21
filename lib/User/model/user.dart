@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:trips_app/Place/model/place.dart';
 
-class User {
-  String name;
-  String email;
-  String photoURL;
+class AppUser {
+  final String uid;
+  final String name;
+  final String email;
+  final String photoURL;
 
-  // myFavoritePlaces
-  // myPlaces
+  final List<Place>? myFavoritePlaces;
+  final List<Place>? myPlaces;
 
-  User(
-      {Key? key,
-      required this.name,
-      required this.email,
-      required this.photoURL});
+  AppUser({
+    Key? key,
+    required this.uid,
+    required this.name,
+    required this.email,
+    required this.photoURL,
+    this.myFavoritePlaces,
+    this.myPlaces,
+  });
 }
