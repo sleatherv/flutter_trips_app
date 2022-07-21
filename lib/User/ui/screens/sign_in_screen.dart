@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:trips_app/User/bloc/bloc_user.dart';
 import 'package:trips_app/widgets/gradient_back.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+
+import 'package:trips_app/platzi_trips_cupertino.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -10,9 +14,25 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  late UserBloc userBloc;
+
   @override
   Widget build(BuildContext context) {
-    return signInGoogleUI();
+    userBloc = BlocProvider.of(context);
+    return _handleCurrentSession();
+  }
+
+  Widget _handleCurrentSession() {
+    return StreamBuilder(
+        stream: userBloc.authStatus,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          // snapshot - data - Object User?
+          if (!snapshot.hasData || snapshot.hasError) {
+            return signInGoogleUI();
+          } else {
+            return const PlatziTripsCupertino();
+          }
+        });
   }
 
   Widget signInGoogleUI() {
@@ -31,7 +51,10 @@ class _SignInScreenState extends State<SignInScreen> {
                       color: Colors.white,
                       fontWeight: FontWeight.bold)),
               const SizedBox(height: 20),
-              SignInButton(Buttons.Google, onPressed: () {})
+              SignInButton(Buttons.Google, onPressed: () {
+                userBloc.signIn().then((userCredential) =>
+                    print('User is ${userCredential.additionalUserInfo}'));
+              })
             ],
           )
         ],
