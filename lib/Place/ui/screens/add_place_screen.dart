@@ -3,14 +3,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:trips_app/Place/ui/widgets/card_image.dart';
 import 'package:trips_app/Place/ui/widgets/text_input_location.dart';
+import 'package:trips_app/widgets/button_purple.dart';
 import 'package:trips_app/widgets/gradient_back.dart';
 import 'package:trips_app/widgets/text_input.dart';
 import 'package:trips_app/widgets/title_header.dart';
 
 class AddPlaceScreen extends StatefulWidget {
-  File? image;
+  final File? image;
 
-  AddPlaceScreen({Key? key, this.image}) : super(key: key);
+  const AddPlaceScreen({Key? key, this.image}) : super(key: key);
 
   @override
   State<AddPlaceScreen> createState() => _AddPlaceScreenState();
@@ -96,6 +97,19 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       hintText: 'Add Location',
                       icon: Icons.location_on_outlined,
                       controller: _controllerLocationPLace),
+                ),
+                Container(
+                  width: 70,
+                  child: ButtonPurple(
+                    buttonText: 'Add Place',
+                    onPressed: () {
+                      print('dasdfasdfsdf');
+                      //Firebase storage
+                      ///url
+                      //Cloud Firestore
+                      ///Place - title, description, url...
+                    },
+                  ),
                 )
               ],
             ),
