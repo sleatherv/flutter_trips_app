@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:trips_app/Place/ui/widgets/text_input_location.dart';
 import 'package:trips_app/widgets/gradient_back.dart';
 import 'package:trips_app/widgets/text_input.dart';
 import 'package:trips_app/widgets/title_header.dart';
@@ -20,6 +21,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
     final _controllerTitlePLace = TextEditingController();
     final _controllerDescriptionPLace = TextEditingController();
+    final _controllerLocationPLace = TextEditingController();
     return Scaffold(
       body: Stack(
         children: [
@@ -77,6 +79,13 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                     controller: _controllerDescriptionPLace,
                   ),
                 ),
+                Container(
+                  margin: const EdgeInsets.only(top: 20),
+                  child: TextInputLocation(
+                      hintText: 'Add Location',
+                      icon: Icons.location_on_outlined,
+                      controller: _controllerLocationPLace),
+                )
               ],
             ),
           )
