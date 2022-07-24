@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class FloatingActionButtonGreen extends StatefulWidget {
-  const FloatingActionButtonGreen({Key? key}) : super(key: key);
+  const FloatingActionButtonGreen(
+      {Key? key, required this.icon, required this.onPressed})
+      : super(key: key);
+
+  final IconData icon;
+  final VoidCallback onPressed;
 
   @override
   State<StatefulWidget> createState() {

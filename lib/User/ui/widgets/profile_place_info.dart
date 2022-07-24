@@ -70,7 +70,13 @@ class ProfilePlaceInfo extends StatelessWidget {
 
     return Stack(
       alignment: const Alignment(0.8, 1.25),
-      children: <Widget>[card, const FloatingActionButtonGreen()],
+      children: <Widget>[
+        card,
+        FloatingActionButtonGreen(
+          icon: Icons.favorite_border,
+          onPressed: () {},
+        )
+      ],
     );
   }
 }

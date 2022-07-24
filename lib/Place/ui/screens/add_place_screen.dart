@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:trips_app/Place/ui/widgets/card_image.dart';
 import 'package:trips_app/Place/ui/widgets/text_input_location.dart';
 import 'package:trips_app/widgets/gradient_back.dart';
 import 'package:trips_app/widgets/text_input.dart';
@@ -60,9 +61,19 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
             margin: const EdgeInsets.only(top: 120, bottom: 20),
             child: ListView(
               children: [
-                Container(),
                 Container(
-                  margin: const EdgeInsets.only(bottom: 20),
+                  alignment: Alignment.center,
+                  child: CardImageWithFabIcon(
+                    pathImage: 'assets/img/sunset.jpeg', //widget.image!.path,
+                    iconData: Icons.camera_alt,
+                    width: screenWidth * 0.90,
+                    height: 250,
+                    onPressedFabIcon: () {},
+                    left: 0,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 20, bottom: 20),
                   child: TextInput(
                     hintText: 'Title',
                     inputType: TextInputType.text,
