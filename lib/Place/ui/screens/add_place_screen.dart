@@ -1,8 +1,12 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:trips_app/Place/model/place.dart';
 import 'package:trips_app/Place/ui/widgets/card_image.dart';
 import 'package:trips_app/Place/ui/widgets/text_input_location.dart';
+import 'package:trips_app/User/bloc/bloc_user.dart';
 import 'package:trips_app/widgets/button_purple.dart';
 import 'package:trips_app/widgets/gradient_back.dart';
 import 'package:trips_app/widgets/text_input.dart';
@@ -20,6 +24,7 @@ class AddPlaceScreen extends StatefulWidget {
 class _AddPlaceScreenState extends State<AddPlaceScreen> {
   @override
   Widget build(BuildContext context) {
+    final UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     final screenWidth = MediaQuery.of(context).size.width;
     final _controllerTitlePLace = TextEditingController();
     final _controllerDescriptionPLace = TextEditingController();
@@ -108,6 +113,16 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       ///url
                       //Cloud Firestore
                       ///Place - title, description, url...
+                      userBloc
+                          .updatePlaceData(Place(
+                              name: _controllerTitlePLace.text,
+                              description: _controllerDescriptionPLace.text,
+                              imageURL: '',
+                              likes: 0))
+                          .whenComplete(() {
+                        print('Termino');
+                        Navigator.pop(context);
+                      });
                     },
                   ),
                 )

@@ -7,14 +7,16 @@ class ProfilePlacesList extends StatelessWidget {
   Place place = Place(
       name: 'Mountains',
       description: 'Hiking. Water fall hunting. Natural bath',
-      imageURL: 'assets/img/mountain.jpeg',
+      imageURL:
+          'https://www.travelmanagers.com.au/wp-content/uploads/2012/08/AdobeStock_254529936_Railroad-to-Denali-National-Park-Alaska_750x500.jpg',
       likes: 321,
       userOwner:
           AppUser(uid: 'uid', name: 'Sleather', email: 'S', photoURL: ''));
   Place place2 = Place(
       name: 'Mountains',
       description: 'Hiking. Water fall hunting. Natural bath',
-      imageURL: 'assets/img/mountain.jpeg',
+      imageURL:
+          'https://www.travelmanagers.com.au/wp-content/uploads/2012/08/AdobeStock_254529936_Railroad-to-Denali-National-Park-Alaska_750x500.jpg',
       likes: 321,
       userOwner:
           AppUser(uid: 'uid', name: 'Sleather', email: 'S', photoURL: ''));
