@@ -35,7 +35,8 @@ class CloudFirestoreAPI {
       'description': place.description,
       'likes': place.likes,
       'userOwner':
-          currenUserID != null ? "$users/$currenUserID" : '' //reference
+          currenUserID != null ? "$users/$currenUserID" : '', //reference
+      'imageURL': place.imageURL,
     });
   }
 }

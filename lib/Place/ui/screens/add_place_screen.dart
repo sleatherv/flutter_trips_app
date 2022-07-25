@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:trips_app/Place/model/place.dart';
@@ -108,21 +110,37 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                   width: 70,
                   child: ButtonPurple(
                     buttonText: 'Add Place',
-                    onPressed: () {
+                    onPressed: () async {
                       //Firebase storage
                       ///url
-                      //Cloud Firestore
-                      ///Place - title, description, url...
-                      userBloc
-                          .updatePlaceData(Place(
-                              name: _controllerTitlePLace.text,
-                              description: _controllerDescriptionPLace.text,
-                              imageURL: '',
-                              likes: 0))
-                          .whenComplete(() {
-                        print('Termino');
-                        Navigator.pop(context);
-                      });
+                      //user id
+                      User? currentUser = userBloc.currentUser;
+                      if (currentUser != null && widget.image != null) {
+                        String userUid = currentUser.uid;
+                        String path =
+                            "$userUid/${DateTime.now().toString()}.jpg";
+                        userBloc
+                            .uploadFileToStorage(path, widget.image!)
+                            .then((UploadTask storageUploadTask) {
+                          storageUploadTask.then((TaskSnapshot snapshot) {
+                            snapshot.ref.getDownloadURL().then((imageURL) {
+                              print('Url image: ${imageURL}');
+                              //Cloud Firestore
+                              ///Place - title, description, url...
+                              userBloc
+                                  .updatePlaceData(Place(
+                                      name: _controllerTitlePLace.text,
+                                      description:
+                                          _controllerDescriptionPLace.text,
+                                      imageURL: imageURL,
+                                      likes: 0))
+                                  .whenComplete(() {
+                                Navigator.pop(context);
+                              });
+                            });
+                          });
+                        });
+                      }
                     },
                   ),
                 )
