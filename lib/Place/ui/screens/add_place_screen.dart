@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:trips_app/Place/model/place.dart';
@@ -70,7 +69,9 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                 Container(
                   alignment: Alignment.center,
                   child: CardImageWithFabIcon(
-                    pathImage: 'assets/img/sunset.jpeg', //widget.image!.path,
+                    pathImage: widget.image != null
+                        ? widget.image!.path
+                        : 'assets/img/no-image.png', //widget.image!.path,
                     iconData: Icons.camera_alt,
                     width: screenWidth * 0.90,
                     height: 250,
@@ -103,12 +104,11 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       icon: Icons.location_on_outlined,
                       controller: _controllerLocationPLace),
                 ),
-                Container(
+                SizedBox(
                   width: 70,
                   child: ButtonPurple(
                     buttonText: 'Add Place',
                     onPressed: () {
-                      print('dasdfasdfsdf');
                       //Firebase storage
                       ///url
                       //Cloud Firestore

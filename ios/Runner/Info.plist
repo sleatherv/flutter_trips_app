@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Trips App requiere permisos para ver tu galería.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Trips App reuiere tomar una foto. ¿Podemos usar tú cámara?</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Trips App reuiere tomar una foto. ¿Podemos user tú micrófono?</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

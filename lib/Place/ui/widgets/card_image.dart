@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import '../../../widgets/floating_action_button_green.dart';
 
@@ -25,17 +27,18 @@ class CardImageWithFabIcon extends StatelessWidget {
       height: height,
       width: width,
       margin: EdgeInsets.only(left: left),
-      decoration: BoxDecoration(
-          image:
-              DecorationImage(fit: BoxFit.cover, image: AssetImage(pathImage)),
-          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(10.0)),
           shape: BoxShape.rectangle,
-          boxShadow: const <BoxShadow>[
+          boxShadow: <BoxShadow>[
             BoxShadow(
                 color: Colors.black38,
                 blurRadius: 15.0,
                 offset: Offset(0.0, 7.0))
           ]),
+      child: ClipRRect(
+          borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+          child: _getImage(pathImage)),
     );
 
     return Stack(
@@ -48,5 +51,31 @@ class CardImageWithFabIcon extends StatelessWidget {
         )
       ],
     );
+  }
+
+  Widget _getImage(String imagePath) {
+    // if (imagePath == null) {
+    //   return const Image(
+    //       image: AssetImage('assets/img/no-image.png'), fit: BoxFit.cover);
+    // }
+
+    if (pathImage.startsWith('http')) {
+      return FadeInImage(
+        placeholder: const AssetImage('assets/img/jar-loading.gif'),
+        image: NetworkImage(pathImage),
+        fit: BoxFit.cover,
+      );
+    } else if (pathImage.startsWith('assets')) {
+      return FadeInImage(
+        placeholder: const AssetImage('assets/img/jar-loading.gif'),
+        image: AssetImage(pathImage),
+        fit: BoxFit.cover,
+      );
+    } else {
+      return Image.file(
+        File(pathImage),
+        fit: BoxFit.cover,
+      );
+    }
   }
 }
