@@ -6,7 +6,6 @@ class Place {
   final String description;
   final String imageURL;
   final int? likes;
-  final AppUser? userOwner;
 
   Place({
     Key? key,
@@ -14,6 +13,5 @@ class Place {
     required this.description,
     required this.imageURL,
     this.likes,
-    this.userOwner,
   });
 }

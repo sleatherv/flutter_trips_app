@@ -30,14 +30,14 @@ class ProfilePlaceInfo extends StatelessWidget {
                     fontSize: 12.0,
                     fontWeight: FontWeight.bold),
               ),
-              Text(
-                this.place.imageURL,
-                style: const TextStyle(
-                    color: Color.fromRGBO(0, 0, 0, 0.4),
-                    fontFamily: 'Lato',
-                    fontSize: 12.0,
-                    fontWeight: FontWeight.bold),
-              )
+              // Text(
+              //   this.place.imageURL,
+              //   style: const TextStyle(
+              //       color: Color.fromRGBO(0, 0, 0, 0.4),
+              //       fontFamily: 'Lato',
+              //       fontSize: 12.0,
+              //       fontWeight: FontWeight.bold),
+              // )
             ]));
 
     final steps = Text(

@@ -49,7 +49,7 @@ class _SignInScreenState extends State<SignInScreen> {
             children: [
               Flexible(
                 child: SizedBox(
-                  width: screenWidth,
+                  width: screenWidth * 0.9,
                   child: const Text("Welcome \n This is your Travel App",
                       style: TextStyle(
                           fontSize: 35,

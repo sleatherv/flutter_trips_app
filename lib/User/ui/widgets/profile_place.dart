@@ -12,17 +12,24 @@ class ProfilePlace extends StatelessWidget {
     final photoCard = Container(
       margin: const EdgeInsets.only(top: 10.0, bottom: 70.0),
       height: 220.0,
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              fit: BoxFit.cover, image: NetworkImage(place.imageURL)),
-          borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+      width: MediaQuery.of(context).size.width * 0.90,
+      decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
           color: Colors.red,
-          boxShadow: const <BoxShadow>[
+          boxShadow: <BoxShadow>[
             BoxShadow(
                 color: Colors.black38,
                 blurRadius: 10.0,
                 offset: Offset(0.0, 5.0))
           ]),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+        child: FadeInImage(
+          placeholder: const AssetImage('assets/img/jar-loading.gif'),
+          image: NetworkImage(place.imageURL),
+          fit: BoxFit.cover,
+        ),
+      ),
     );
 
     return Stack(

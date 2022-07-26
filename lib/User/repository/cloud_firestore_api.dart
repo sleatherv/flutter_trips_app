@@ -2,10 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:trips_app/Place/model/place.dart';
 import 'package:trips_app/User/model/user.dart';
+import 'package:trips_app/User/ui/widgets/profile_place.dart';
 
 class CloudFirestoreAPI {
-  static const String users = "users";
-  static const String places = "places";
+  final String users = "users";
+  final String places = "places";
 
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
@@ -47,5 +48,20 @@ class CloudFirestoreAPI {
         });
       });
     });
+  }
+
+  List<ProfilePlace> buildPlaces(List<DocumentSnapshot> placesListSnapshot) {
+    List<ProfilePlace> profilePlaces = <ProfilePlace>[];
+    for (var place in placesListSnapshot) {
+      if (place.data() != null) {
+        final p = place.data() as Map<String, dynamic>;
+        profilePlaces.add(ProfilePlace(Place(
+            name: p["name"],
+            description: p["description"],
+            imageURL: p["imageURL"],
+            likes: p["likes"])));
+      }
+    }
+    return profilePlaces;
   }
 }
