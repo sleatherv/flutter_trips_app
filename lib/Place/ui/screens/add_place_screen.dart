@@ -124,7 +124,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                             .then((UploadTask storageUploadTask) {
                           storageUploadTask.then((TaskSnapshot snapshot) {
                             snapshot.ref.getDownloadURL().then((imageURL) {
-                              print('Url image: ${imageURL}');
                               //Cloud Firestore
                               ///Place - title, description, url...
                               userBloc

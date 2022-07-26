@@ -61,12 +61,14 @@ class _SignInScreenState extends State<SignInScreen> {
               const SizedBox(height: 20),
               SignInButton(Buttons.Google, onPressed: () {
                 // userBloc.signOut();
-                userBloc.signIn().then((user) {
-                  userBloc.updateUserData(AppUser(
-                      uid: user.additionalUserInfo?.profile!['id'],
-                      name: user.additionalUserInfo?.profile!['name'],
-                      email: user.additionalUserInfo?.profile!['email'],
-                      photoURL: user.additionalUserInfo?.profile!['picture']));
+                userBloc.signIn().then((UserCredential user) {
+                  if (userBloc.currentUser != null) {
+                    userBloc.updateUserData(AppUser(
+                        uid: userBloc.currentUser!.uid,
+                        name: userBloc.currentUser!.displayName ?? '',
+                        email: userBloc.currentUser!.email ?? '',
+                        photoURL: userBloc.currentUser!.photoURL ?? ''));
+                  }
                 });
               })
             ],
