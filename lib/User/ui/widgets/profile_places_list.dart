@@ -22,7 +22,9 @@ class ProfilePlacesList extends StatelessWidget {
     likes: 321,
   );
 
-  ProfilePlacesList({Key? key}) : super(key: key);
+  ProfilePlacesList({Key? key, required this.user}) : super(key: key);
+
+  final AppUser user;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class ProfilePlacesList extends StatelessWidget {
       margin: const EdgeInsets.only(
           top: 10.0, left: 20.0, right: 20.0, bottom: 10.0),
       child: StreamBuilder(
-        stream: userBloc.placesStream,
+        stream: userBloc.myPlacesListStream(user.uid),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.waiting:

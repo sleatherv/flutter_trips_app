@@ -47,6 +47,11 @@ class UserBloc implements Bloc {
           List<DocumentSnapshot> placesListSnapshot) =>
       _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
 
+  Stream<QuerySnapshot> myPlacesListStream(String uid){
+    return FirebaseFirestore.instance.collection(CloudFirestoreAPI().places)
+    .where('userOwner', isEqualTo: FirebaseFirestore.instance.doc("${CloudFirestoreAPI().users}/$uid")).snapshots();
+  }
+
   //Register place in DB
   Future<void> updatePlaceData(Place place) =>
       _cloudFirestoreRepository.updatePlaceDataFirestore(place);
