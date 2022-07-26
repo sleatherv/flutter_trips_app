@@ -54,11 +54,6 @@ class CardImageWithFabIcon extends StatelessWidget {
   }
 
   Widget _getImage(String imagePath) {
-    // if (imagePath == null) {
-    //   return const Image(
-    //       image: AssetImage('assets/img/no-image.png'), fit: BoxFit.cover);
-    // }
-
     if (pathImage.startsWith('http')) {
       return FadeInImage(
         placeholder: const AssetImage('assets/img/jar-loading.gif'),

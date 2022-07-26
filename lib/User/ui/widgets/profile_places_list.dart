@@ -43,14 +43,14 @@ class ProfilePlacesList extends StatelessWidget {
             case ConnectionState.done:
               if (snapshot.hasData) {
                 return Column(
-                    children: userBloc.buildPlacesFirestore(snapshot.data));
+                    children: userBloc.buildMyPlacesFirestore(snapshot.data));
               }
               return const CircularProgressIndicator();
             case ConnectionState.active:
               if (snapshot.hasData) {
                 return Column(
                     children:
-                        userBloc.buildPlacesFirestore(snapshot.data.docs));
+                        userBloc.buildMyPlacesFirestore(snapshot.data.docs));
               }
               return const CircularProgressIndicator();
             default:

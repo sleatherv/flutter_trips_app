@@ -1,62 +1,42 @@
 import 'package:flutter/material.dart';
-import 'card_image.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:trips_app/User/bloc/bloc_user.dart';
+import 'package:trips_app/Place/ui/widgets/card_image.dart';
 
 class CardImageList extends StatelessWidget {
   const CardImageList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double width = 300;
-    double height = 250;
-    double left = 20.0;
+    UserBloc userBloc = BlocProvider.of<UserBloc>(context);
     return SizedBox(
-      height: 350.0,
-      child: ListView(
-        padding: const EdgeInsets.all(25.0),
-        scrollDirection: Axis.horizontal,
-        children: [
-          CardImageWithFabIcon(
-            pathImage: "assets/img/beach_palm.jpeg",
-            iconData: Icons.favorite_border,
-            width: width,
-            height: height,
-            onPressedFabIcon: () {},
-            left: left,
-          ),
-          CardImageWithFabIcon(
-            pathImage: "assets/img/mountain.jpeg",
-            iconData: Icons.favorite_border,
-            width: width,
-            height: height,
-            onPressedFabIcon: () {},
-            left: left,
-          ),
-          CardImageWithFabIcon(
-            pathImage: "assets/img/mountain_stars.jpeg",
-            iconData: Icons.favorite_border,
-            width: width,
-            height: height,
-            onPressedFabIcon: () {},
-            left: left,
-          ),
-          CardImageWithFabIcon(
-            pathImage: "assets/img/river.jpeg",
-            iconData: Icons.favorite_border,
-            width: width,
-            height: height,
-            onPressedFabIcon: () {},
-            left: left,
-          ),
-          CardImageWithFabIcon(
-            pathImage: "assets/img/sunset.jpeg",
-            iconData: Icons.favorite_border,
-            width: width,
-            height: height,
-            onPressedFabIcon: () {},
-            left: left,
-          ),
-        ],
-      ),
+        height: 350.0,
+        child: StreamBuilder(
+          stream: userBloc.placesStream,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.waiting:
+                return const CircularProgressIndicator();
+              case ConnectionState.none:
+                return const CircularProgressIndicator();
+              case ConnectionState.done:
+                return _listViewPlaces(
+                    userBloc.buildPlacesFirestore(snapshot.data.docs));
+              case ConnectionState.active:
+                return _listViewPlaces(
+                    userBloc.buildPlacesFirestore(snapshot.data.docs));
+              default:
+                return const CircularProgressIndicator();
+            }
+          },
+        ));
+  }
+
+  Widget _listViewPlaces(List<CardImageWithFabIcon> placesCard) {
+    return ListView(
+      padding: const EdgeInsets.all(25.0),
+      scrollDirection: Axis.horizontal,
+      children: placesCard,
     );
   }
 }
