@@ -19,7 +19,7 @@ class _PlatziTrips extends State<PlatziTrips> {
     const HomeTrips(
       descriptionDummy: 'Lorem...',
     ),
-    SearchTrips(),
+    const SearchTrips(),
     ProfileTrips()
   ];
 

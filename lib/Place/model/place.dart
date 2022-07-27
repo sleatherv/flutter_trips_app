@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:trips_app/User/model/user.dart';
 
 class Place {
   final String name;

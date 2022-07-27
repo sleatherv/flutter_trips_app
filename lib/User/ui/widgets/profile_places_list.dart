@@ -1,9 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:trips_app/User/bloc/bloc_user.dart';
 import 'package:trips_app/User/model/user.dart';
-import 'profile_place.dart';
 import '../../../Place/model/place.dart';
 
 class ProfilePlacesList extends StatelessWidget {
