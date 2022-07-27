@@ -2,25 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 import 'package:trips_app/User/bloc/bloc_user.dart';
 import 'package:trips_app/User/model/user.dart';
-import '../../../Place/model/place.dart';
 
 class ProfilePlacesList extends StatelessWidget {
-  Place place = Place(
-    name: 'Mountains',
-    description: 'Hiking. Water fall hunting. Natural bath',
-    imageURL:
-        'https://www.travelmanagers.com.au/wp-content/uploads/2012/08/AdobeStock_254529936_Railroad-to-Denali-National-Park-Alaska_750x500.jpg',
-    likes: 321,
-  );
-  Place place2 = Place(
-    name: 'Mountains',
-    description: 'Hiking. Water fall hunting. Natural bath',
-    imageURL:
-        'https://www.travelmanagers.com.au/wp-content/uploads/2012/08/AdobeStock_254529936_Railroad-to-Denali-National-Park-Alaska_750x500.jpg',
-    likes: 321,
-  );
-
-  ProfilePlacesList({Key? key, required this.user}) : super(key: key);
+  const ProfilePlacesList({Key? key, required this.user}) : super(key: key);
 
   final AppUser user;
 
@@ -59,11 +43,3 @@ class ProfilePlacesList extends StatelessWidget {
     );
   }
 }
-
-
-// Column(
-        //   children: <Widget>[
-        //     ProfilePlace(place),
-        //     ProfilePlace(place2),
-        //   ],
-        // ),

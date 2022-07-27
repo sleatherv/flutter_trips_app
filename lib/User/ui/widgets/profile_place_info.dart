@@ -65,7 +65,8 @@ class ProfilePlaceInfo extends StatelessWidget {
       children: <Widget>[
         card,
         FloatingActionButtonGreen(
-          icon: Icons.favorite_border,
+          icon:
+              this.place.liked == true ? Icons.favorite : Icons.favorite_border,
           onPressed: () {},
         )
       ],

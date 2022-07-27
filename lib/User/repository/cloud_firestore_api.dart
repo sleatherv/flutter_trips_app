@@ -58,6 +58,8 @@ class CloudFirestoreAPI {
       if (place.data() != null) {
         final p = place.data() as Map<String, dynamic>;
         profilePlaces.add(ProfilePlace(Place(
+            id: place.id,
+            liked: p["liked"],
             name: p["name"],
             description: p["description"],
             imageURL: p["imageURL"],
@@ -67,40 +69,49 @@ class CloudFirestoreAPI {
     return profilePlaces;
   }
 
-  List<CardImageWithFabIcon> buildPlaces(
-      List<DocumentSnapshot> placesListSnapshot) {
-    List<CardImageWithFabIcon> profilePlaces = <CardImageWithFabIcon>[];
+  List<Place> buildPlaces(
+      List<DocumentSnapshot> placesListSnapshot, AppUser user) {
+    List<Place> places = <Place>[];
 
-    double height = 250;
-    double width = 300;
-    double left = 20;
+    for (var placeS in placesListSnapshot) {
+      if (placeS.data() != null) {
+        final p = placeS.data() as Map<String, dynamic>;
+        Place place = Place(
+            id: placeS.id,
+            name: p["name"],
+            description: p["description"],
+            imageURL: p["imageURL"],
+            liked: p["liked"]);
+        List usersLikedRefs = p["usersLiked"] ?? [];
+        place.liked = false;
+        for (var drUL in usersLikedRefs) {
+          if (user.uid == drUL.id) {
+            place.liked = true;
+          }
+        }
 
-    IconData iconData = Icons.favorite_border;
-    for (var place in placesListSnapshot) {
-      if (place.data() != null) {
-        final p = place.data() as Map<String, dynamic>;
-
-        profilePlaces.add(CardImageWithFabIcon(
-          height: height,
-          width: width,
-          pathImage: p["imageURL"],
-          onPressedFabIcon: () {
-            likePlace(place.id);
-          },
-          left: left,
-          iconData: iconData,
-        ));
+        places.add(place);
       }
     }
-    return profilePlaces;
+    return places;
   }
 
-  Future likePlace(String placeID) async {
-    await _db.collection(places).doc(placeID).get().then((DocumentSnapshot ds) {
+  Future likePlace(Place place, String uid) async {
+    await _db
+        .collection(places)
+        .doc(place.id)
+        .get()
+        .then((DocumentSnapshot ds) {
       final doc = ds.data() as Map<String, dynamic>;
       int likes = doc['likes'];
 
-      _db.collection(places).doc(placeID).update({'likes': likes + 1});
+      _db.collection(places).doc(place.id).update({
+        'likes': place.liked! ? likes + 1 : likes - 1,
+        'liked': place.liked! ? true : false,
+        'usersLiked': place.liked!
+            ? FieldValue.arrayUnion([_db.doc("$users/$uid")])
+            : FieldValue.arrayRemove([_db.doc("$users/$uid")])
+      });
     });
   }
 }

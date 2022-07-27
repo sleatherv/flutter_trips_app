@@ -12,14 +12,16 @@ class CardImageWithFabIcon extends StatelessWidget {
     required this.onPressedFabIcon,
     required this.iconData,
     this.left = 20,
+    this.internet,
   }) : super(key: key);
 
   final String pathImage;
   final double height;
   final double width;
-  final double left;
   final VoidCallback onPressedFabIcon;
   final IconData iconData;
+  final double left;
+  final bool? internet;
 
   @override
   Widget build(BuildContext context) {

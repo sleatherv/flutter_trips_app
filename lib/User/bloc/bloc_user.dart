@@ -57,10 +57,11 @@ class UserBloc implements Bloc {
         .snapshots();
   }
 
-  List<CardImageWithFabIcon> buildPlacesFirestore(
-          List<DocumentSnapshot> placesListSnapshot) =>
-      _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
-
+  List<Place> buildPlacesFirestore(
+          List<DocumentSnapshot> placesListSnapshot, AppUser user) =>
+      _cloudFirestoreRepository.buildPlaces(placesListSnapshot, user);
+  Future likePlace(Place place, String uid) =>
+      _cloudFirestoreRepository.likePlace(place, uid);
   //Register place in DB
   Future<void> updatePlaceData(Place place) =>
       _cloudFirestoreRepository.updatePlaceDataFirestore(place);
